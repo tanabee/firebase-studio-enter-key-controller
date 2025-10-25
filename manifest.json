@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Firebase Studio Enter Key Controller",
+  "version": "1.0.0",
+  "description": "Firebase StudioでEnterキーによるSubmitを防止します",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://studio.firebase.google.com/*",
+        "https://*.cloudworkstations.dev/*",
+        "https://*.cloudworkstations.googleusercontent.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
+}
