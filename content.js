@@ -4,17 +4,6 @@ function setupEnterKeyPrevention() {
   // ループ防止フラグ
   let isSimulatingEnter = false;
 
-  // フォームのsubmitイベントを直接ブロック（Shift+Enterからのシミュレート時は除く）
-  document.addEventListener('submit', function(e) {
-    if (isSimulatingEnter) {
-      return;
-    }
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    return false;
-  }, true);
-
   // キーダウンイベントをキャプチャフェーズで捕捉（window レベルで最優先）
   window.addEventListener('keydown', function(e) {
     // ループ防止：シミュレート中のイベントは無視
@@ -158,33 +147,6 @@ function setupEnterKeyPrevention() {
     }
   }, true);
 
-  // キーアップイベントも制御
-  document.addEventListener('keyup', function(e) {
-    if (isSimulatingEnter) {
-      return;
-    }
-    if ((e.key === 'Enter' || e.keyCode === 13)) {
-      const target = e.target;
-      // Shift+Enterはスルー
-      if (e.shiftKey) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        return false;
-      }
-      // 通常のEnterは防止
-      if (!e.shiftKey) {
-        if (target.tagName === 'INPUT' ||
-            target.tagName === 'TEXTAREA' ||
-            target.isContentEditable) {
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          return false;
-        }
-      }
-    }
-  }, true);
 }
 
 // ページ読み込み時に初期化
