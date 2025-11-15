@@ -32,9 +32,9 @@ Firebase Studio で Enter キーの挙動を逆転させ、誤送信を防ぐ Ch
 
 ## 動作概要
 
-- `keydown`, `keypress`, `keyup` をキャプチャフェーズでフック
-- Shift+Enter のみフォーム送信を許可し、それ以外の Enter は `preventDefault` で抑止
-- 送信時は `KeyboardEvent` をシミュレートして submit を発火し、ループ防止用の `isSimulatingEnter` フラグでイベントの再入を防ぐ
+- `keydown` と `keypress` をキャプチャフェーズでフック
+- 通常の Enter は `preventDefault` で抑止し、改行を手動挿入
+- Shift+Enter のみフォーム送信を許可し、ループ防止用の `isSimulatingEnter` フラグでイベントの再入を防ぐ
 
 ## 開発メモ
 
